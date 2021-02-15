@@ -27,8 +27,7 @@ const minLength = (len) => (val) => val && (val.length >= len);
         }
     
         handleSubmit(values) {
-            console.log(values.dishId, values.rating, values.author, values.comment);
-            alert('Current State is: ' + JSON.stringify(values));
+            this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
         }
     
         render() {
@@ -171,7 +170,9 @@ const minLength = (len) => (val) => val && (val.length >= len);
             </div>                 
                 <div className='row'>      
                     <RenderDish dish={props.dish} />
-                    <RenderComments comments = {props.comments} />
+                    <RenderComments comments = {props.comments} 
+                        addComment={props.addComment}
+                        dishId={props.dish.id}/>
                 </div>
             </div>
         );
